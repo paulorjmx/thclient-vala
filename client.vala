@@ -10,6 +10,7 @@ namespace Client
         {
             address = new InetSocketAddress.from_string(ip_address, port);
             _client = new Socket(SocketFamily.IPV4, SocketType.STREAM, SocketProtocol.TCP);
+            stdout.printf("\n%s\n", (string) _client.get_keepalive());
         }
 
         public void connect_to_server()
@@ -76,6 +77,12 @@ namespace Client
             {
                 stdout.printf("\nO cliente nao esta conectado ao servidor!\n");
             }
+        }
+
+        public void disconnect()
+        {
+            _client.shutdown(true, true);
+            _client.close();
         }
     }
 }
