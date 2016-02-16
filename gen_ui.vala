@@ -67,11 +67,14 @@ namespace Client
 
         private void on_disconnect_activate()
         {
-
+            _client.send_data("SHT_CLI".data);
+            _client.disconnect();
         }
 
         private void on_main_main_window_destroy()
         {
+            _client.send_data("SHT_CLI".data);
+            _client.disconnect();
             Gtk.main_quit();
         }
 
